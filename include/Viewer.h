@@ -56,6 +56,11 @@ public:
 
     void Release();
 
+    cv::Mat getLastFrame() const {
+        std::lock_guard<std::mutex> lock(last_frame_mutex);
+        return last_frame.clone();
+    }
+
 private:
 
     bool Stop();
@@ -81,6 +86,8 @@ private:
     bool mbStopRequested;
     std::mutex mMutexStop;
 
+    cv::Mat last_frame;
+    mutable std::mutex last_frame_mutex;
 };
 
 }

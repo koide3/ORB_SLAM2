@@ -138,6 +138,11 @@ void Viewer::Run()
         cv::imshow("ORB-SLAM2: Current Frame",im);
         cv::waitKey(mT);
 
+        {
+            std::lock_guard<std::mutex> lock(last_frame_mutex);
+            last_frame = im;
+        }
+
         if(menuReset)
         {
             menuShowGraph = true;

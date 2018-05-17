@@ -489,4 +489,8 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
     return mTrackedKeyPointsUn;
 }
 
+cv::Mat System::getLastFrame() const { 
+    return mpViewer->getLastFrame(); 
+}
+
 } //namespace ORB_SLAM
